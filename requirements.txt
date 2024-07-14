@@ -1,0 +1,2 @@
+django~=4.1.7
+mysqlclient~=1.4.1 # mysqlclient 和 pymysql 都可以用来连接 MySQL 数据库
