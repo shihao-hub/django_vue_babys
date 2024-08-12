@@ -1,3 +1,6 @@
 from django.test import TestCase
 
-# Create your tests here.
+
+sqlite3_test_text = """
+select * from com
+"""

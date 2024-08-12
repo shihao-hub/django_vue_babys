@@ -10,20 +10,25 @@ ORDER_INFOS_STATE = (
 
 
 class CartInfos(models.Model):
+    """ (购物车信息表) 设计说明之购物车页面，将用户选购的商品以列表的形式展示 """
     id = models.AutoField(primary_key=True)
     quantity = models.IntegerField(verbose_name="购买数量")
-    # 本书作者好像不爱用外键？
-    commodity_infos_id = models.IntegerField(verbose_name="商品 ID")
-    user_id = models.IntegerField(verbose_name="用户 ID")
+    # (Q)! 本书作者好像不爱用外键？
+    # 与 CommodityInfos 关联
+    commodity_infos_id = models.IntegerField(verbose_name="商品信息表的主键 id")
+    user_id = models.IntegerField(verbose_name="Django 内置用户表的主键 id")
 
     class Meta:
         verbose_name = verbose_name_plural = "购物车"
+
+    objects = models.Manager()
 
     def __str__(self):
         return str(self.id)
 
 
 class OrderInfos(models.Model):
+    """ (订单信息表) 设计说明之订单信息 """
     id = models.AutoField(primary_key=True)
     price = models.FloatField(verbose_name="订单总价")
     created = models.DateField(verbose_name="创建时间", auto_now_add=True)
@@ -32,6 +37,8 @@ class OrderInfos(models.Model):
 
     class Meta:
         verbose_name = verbose_name_plural = "订单信息"
+
+    objects = models.Manager()
 
     def __str__(self):
         return str(self.id)
