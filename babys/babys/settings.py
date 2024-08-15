@@ -20,10 +20,46 @@ def insert_between_in_list(list_val: list, val, before, after):
 
 
 INSTALLED_APPS.extend([
+    "rest_framework",  # 用于开发 Restful API
+    "rest_framework.authtoken",  # DRF自带的 Token 认证
+
     "index",
     "shopper",
     "commodity",
 ])
+
+# DRF 的全局配置
+REST_FRAMEWORK = {
+    # DRF 分页设置
+    "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
+    "PAGE_SIZE": 10,
+    # 时间显示格式
+    "DATETIME_FORMAT": "%Y-%m-%d %H:%M:%S",
+    # 返回 response 对象所用的类
+    "DEFAULT_RENDER_CLASSES": [
+        "rest_framework.renders.JSONRenderer",
+        "rest_framework.renders.BrowsableAPIRenderer",
+    ],
+    # 解析器，如何解析request请求中的request.data
+    "DEFAULT_PARSER_CLASSES": [
+        "rest_framework.parsers.JSONParser",
+        "rest_framework.parsers.FormParser",
+        "rest_framework.parsers.MultiPartParser",
+    ],
+    # 权限相关配置
+    "DEFAULT_PERMISSION_CLASSES": [
+        # 如果不设置默认使用 AllowAny，即不进行权限验证
+        "rest_framework.permissions.AllowAny",
+        # IsAuthenticated 是全局设置权限验证
+        "rest_framework.permissions.IsAuthenticated",
+    ],
+    # 认证相关配置
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        "rest_framework.authentication.BasicAuthentication",
+        "rest_framework.authentication.SessionAuthentication",
+        "rest_framework.authentication.TokenAuthentication",
+    ],
+}
 
 # 开发者可以根据自己的需求自定义中间件，只需要添加到此处就可以激活，但是一般情况下都不用自己写...
 MIDDLEWARE.extend([
@@ -62,6 +98,7 @@ DATABASES = {
 # Static files (CSS, JavaScripts, Images)
 # STATIC_URL 是 DEBUG = True 时，Django 默认的，而且只能识别每个 app 下的 static 文件夹
 STATIC_URL = "static/"
+# (Q)!: 2024-08-16，为什么 pstatic 开头，html 模板中用到的 load static 生成的路径确是 static 开头？
 STATICFILES_DIRS = [
     BASE_DIR / "pstatic"
 ]
