@@ -1,13 +1,5 @@
 from django.db import models
 
-ORDER_INFOS_STATE = (
-    ("待支付", "待支付"),
-    ("已支付", "已支付"),
-    ("发货中", "发货中"),
-    ("已签收", "已签收"),
-    ("退货中", "退货中"),
-)
-
 
 class CartInfos(models.Model):
     """ (购物车信息表) 设计说明之购物车页面，将用户选购的商品以列表的形式展示 """
@@ -25,6 +17,15 @@ class CartInfos(models.Model):
 
     def __str__(self):
         return str(self.id)
+
+
+ORDER_INFOS_STATE = (
+    ("待支付", "待支付"),
+    ("已支付", "已支付"),
+    ("发货中", "发货中"),
+    ("已签收", "已签收"),
+    ("退货中", "退货中"),
+)
 
 
 class OrderInfos(models.Model):
