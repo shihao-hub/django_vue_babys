@@ -35,6 +35,9 @@ class IndexView(TemplateView):
         """ 重构之重复代码 """
         commodity_infos = CommodityInfos.objects.order_by("-sold")[:8]
 
+        # Test
+        # obj = CommodityInfos.objects.filter().get(pk=1)
+
         # 儿童服饰、奶粉辅食、儿童用品
         cl = Types.get_seconds_list_by_firsts("儿童服饰")
         fl = Types.get_seconds_list_by_firsts("奶粉辅食")
