@@ -16,9 +16,19 @@ class Types(models.Model):
         return str(self.id)
 
     @classmethod
+    def get_queryset(cls, filter_dict=None, order_by_str=None):
+        """ 重构 之 提取函数 """
+        res = cls.objects.all()
+        if filter_dict:
+            res = res.filter(**filter_dict)
+        if order_by_str:
+            res = res.order_by(order_by_str)
+        return res
+
+    @classmethod
     def get_seconds_list_by_firsts(cls, firsts):
-        """ 重构之数据被它的所属类或者对象使用，应该将其放入它的类中（语言组织的不太好...） """
-        types = cls.objects.all()
+        """ 重构 之 数据被它的所属类或者对象使用，应该将其放入它的类中（语言组织的不太好...） """
+        types = cls.get_queryset()
         return [e.seconds for e in types if e.firsts == firsts]
 
 
