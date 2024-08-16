@@ -67,6 +67,12 @@ MIDDLEWARE.extend([
 ])
 
 # Override
+ALLOWED_HOSTS = [
+    "10.85.208.146",
+    "127.0.0.1"
+]
+
+# Override
 TEMPLATES = [
     {
         # 定义模板引擎
