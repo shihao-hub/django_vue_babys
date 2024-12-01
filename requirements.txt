@@ -1,5 +1,5 @@
 django~=4.2.15 # 原 django~=4.1.7
 djangorestframework==3.15.2 # 直接 pip 下载 djangorestframework 时，自动下载了如下两个库：django-4.2.15，djangorestframework-3.15.2
-mysqlclient~=1.4.1 # mysqlclient 和 pymysql 都可以用来连接 MySQL 数据库
+mysqlclient~=2.2.4 # mysqlclient 和 pymysql 都可以用来连接 MySQL 数据库
 # markdown
 # django-filter
