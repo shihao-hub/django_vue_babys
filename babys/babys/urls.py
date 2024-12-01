@@ -21,11 +21,11 @@ from django.conf import settings
 
 urlpatterns = [
     # 添加 app 的 urls.py
-    path("", include(("index.urls", "index"), namespace="index")),
-    path("commodity", include(("commodity.urls", "commodity"), namespace="commodity")),
-    path("shopper", include(("shopper.urls", "shopper"), namespace="shopper")),
-    # 配置媒体资源的路由信息
-    path("media/(?P<path>.*)", serve, {"document_root": settings.MEDIA_ROOT}, name="media"),
+    path("", include(("apps.index.urls", "index"), namespace="index")),
+    path("commodity", include(("apps.commodity.urls", "commodity"), namespace="commodity")),
+    path("shopper", include(("apps.shopper.urls", "shopper"), namespace="shopper")),
+    # 配置媒体资源的路由信息（有正则需要 re_path，否则会警告 ?: (2_0.W001)）
+    re_path("media/(?P<path>.*)", serve, {"document_root": settings.MEDIA_ROOT}, name="media"),
     # Django 内置的后台管理系统
     path("admin/", admin.site.urls),
 ]

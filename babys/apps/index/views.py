@@ -11,7 +11,7 @@ from django.views.generic import (
     WeekArchiveView, DayArchiveView, TodayArchiveView, DateDetailView
 )
 
-from commodity.models import CommodityInfos, Types
+from apps.commodity.models import CommodityInfos, Types
 
 
 def index_view(request: WSGIRequest):

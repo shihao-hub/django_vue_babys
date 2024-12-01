@@ -1,5 +1,5 @@
 from django.contrib import admin
-from commodity.models import Types, CommodityInfos
+from apps.commodity.models import Types, CommodityInfos
 
 
 @admin.register(Types)

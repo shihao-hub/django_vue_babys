@@ -1,31 +1,12 @@
-from .base_settings import *
-
-
-def insert_between_in_list(list_val: list, val, before, after):
-    no_problem, pos = False, -1
-    # 此处可以优化成：、
-    #       -> 多利用基本操作呀，总是重复很耗费心力的，至于为什么耗费，最明显的一点就是代码需要测试...
-    #   pos = list_val.find(before)
-    #   if pos and pos - 1 < len(list_val) and list_val[pos]:
-    #       pos = pos + 1
-    #   else:
-    #       raise Exception("...")
-    for i, v in enumerate(list_val):
-        if i + 1 < len(list_val) and v == before and list_val[i + 1] == after:
-            no_problem = True
-            pos = i + 1
-    if not no_problem:
-        raise Exception(f"无法在 {before} 和 {after} 之间插入值，因为无法定位")
-    list_val.insert(pos, val)
-
+from babys.base_settings import *
 
 INSTALLED_APPS.extend([
     "rest_framework",  # 用于开发 Restful API
     "rest_framework.authtoken",  # DRF自带的 Token 认证
 
-    "index",
-    "shopper",
-    "commodity",
+    "apps.commodity",
+    "apps.index",
+    "apps.shopper",
 ])
 
 # DRF 的全局配置
